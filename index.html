@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Para Aylin 🩵</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #cceeff, #e6f7ff, #b3e0ff);
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #3399ff;
+      margin-top: 60px;
+      font-size: 3em;
+    }
+
+    p {
+      font-size: 1.5em;
+      color: #004d80;
+      margin: 20px auto;
+      max-width: 600px;
+    }
+
+    .heart {
+      position: absolute;
+      color: #66ccff;
+      font-size: 24px;
+      animation: floatUp 3s linear forwards;
+      pointer-events: none;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh);
+        opacity: 0;
+      }
+    }
+
+    .footer {
+      position: fixed;
+      bottom: 10px;
+      width: 100%;
+      font-size: 1.1em;
+      color: #0066cc;
+    }
+
+    .message-box, .reply-box {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 20px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 700px;
+      box-shadow: 0 0 15px #99d6ff;
+    }
+
+    input, textarea {
+      width: 90%;
+      padding: 10px;
+      font-size: 1em;
+      border-radius: 10px;
+      border: 1px solid #99d6ff;
+      margin-top: 10px;
+      resize: none;
+    }
+
+    button {
+      margin-top: 10px;
+      background-color: #66ccff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 30px;
+      cursor: pointer;
+      box-shadow: 0 4px #3399ff;
+    }
+
+    button:hover {
+      background-color: #3399ff;
+    }
+
+    #respuesta {
+      color: #003366;
+      font-weight: bold;
+      margin-top: 15px;
+      white-space: pre-wrap;
+    }
+
+    audio {
+      display: none;
+    }
+  </style>
+</head>
+<body onclick="tocarPantalla(event)">
+  <h1>🩵 Hola Aylin 🩵</h1>
+
+  <div class="message-box">
+    <p>
+      bueno pa que cada vez que sienta que nadie la ama... entre aquí.<br>
+      Porque yo siempre estaré pensando en ud 🩵
+    </p>
+    <p>
+      Eres especial, única, valiente y hermosa por dentro y por fuera.<br>
+      Nunca olvide cuánto la quiero, Aylin 🩵
+    </p>
+    <p><em>(Toque la pantalla y vea q saico es)</em></p>
+  </div>
+
+  <div class="reply-box">
+    <p>¿Quiere decirme algo tonta</p>
+    <textarea id="mensaje" rows="4" placeholder="Escribí algo aquí..."></textarea><br>
+    <button onclick="mostrarMensaje()">Enviar</button>
+
+    <div id="respuesta"></div>
+  </div>
+
+  <div class="footer">Hecho por el que te ghostea siempre 🩵</div>
+
+ <button id="botonPlay">Reproducir música desde 1:00</button>
+
+  <audio id="The Neighbourhood - You Get Me So High  españollyrics" loop>
+    <source src="The Neighbourhood - You Get Me So High  españollyrics" type="audio/mp3" />
+    Tu navegador no soporta audio.
+  </audio>
+
+  <script>
+    const boton = document.getElementById('botonPlay');
+    const audio = document.getElementById('The Neighbourhood - You Get Me So High  españollyrics');
+
+    boton.addEventListener('click', () => {
+      audio.currentTime = 60; // 60 segundos = 1 minuto
+      audio.play();
+      boton.disabled = true;  // para que no pulse otra vez
+      boton.innerText = "🎵 Música sonando...";
+    });
+  </script>
+
+
+  <script>
+    function tocarPantalla(e) {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "🩵 Aylin 🩵";
+      document.body.appendChild(heart);
+
+      heart.style.left = e.clientX + "px";
+      heart.style.top = e.clientY + "px";
+
+      setTimeout(() => {
+        heart.remove();
+      }, 3000);
+
+      if (!window.loveShown) {
+        alert("Te amo, tonta Nunca lo olvide hp.");
+        window.loveShown = true;
+      }
+    }
+
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "🩵 Aylin 🩵";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      heart.style.top = window.innerHeight + "px";
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 3000);
+    }, 1000);
+
+    function mostrarMensaje() {
+      const mensaje = document.getElementById("mensaje").value.trim();
+      const respuesta = document.getElementById("respuesta");
+      if (mensaje !== "") {
+        respuesta.innerText = "Aylin escribió: 💬\n" + mensaje;
+        document.getElementById("mensaje").value = "";
+      } else {
+        respuesta.innerText = "";
+      }
+    }
+  </script>
+</body>
+</html>
